@@ -1,3 +1,8 @@
+class MyController < Formotion::FormController
+  def my_callback 
+    p 'called back into controller'
+  end
+end
 class AppDelegate
 
   attr_accessor :view_controller
@@ -8,6 +13,13 @@ class AppDelegate
       sections: [{
         title: "Register",
         rows: [{
+          title: "XXX",
+          key: :xxx,
+          type: :controller_bridge,
+          controller_callback_method: 'my_callback',
+          #value: 'abc',
+          placeholder: 'tap to make callback'
+        },{
           title: "Photo",
           key: :photo,
           type: :image,
@@ -158,7 +170,7 @@ class AppDelegate
       }]
     })
 
-    @view_controller = Formotion::FormController.alloc.initWithForm(form)
+    @view_controller = MyController.alloc.initWithForm(form)
     @view_controller.form.on_submit do |form|
         p @view_controller.form.render
       end
@@ -167,4 +179,5 @@ class AppDelegate
     @window.makeKeyAndVisible
     true
   end
+  
 end
