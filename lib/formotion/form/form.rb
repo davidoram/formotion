@@ -209,7 +209,7 @@ module Formotion
             if row.template_parent
               # If this row is part of a template
               # use the parent's key
-              row.value = data[row.template_parent_key] if data.has_key?(row.template_parent_key)
+              row.value = data[row.template_parent.key] if data.has_key?(row.template_parent.key)
             elsif row.subform
               row.subform.to_form.values = data
             else
