@@ -34,6 +34,15 @@ module Formotion
         display_key_label.highlightedTextColor = cell.textLabel.highlightedTextColor
         #display_key_label.placeholder = row.placeholder
         
+        # Update self when value changes
+        observe(self.row, "value") do |old_value, new_value|
+          break_with_semaphore do
+            if row.value
+              self.display_key_label.text = row.value
+            end
+          end
+        end
+        
       end
 
       def update_cell(cell)

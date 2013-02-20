@@ -1,6 +1,10 @@
+include BW::App
 class MyController < Formotion::FormController
   def my_callback 
-    p 'called back into controller'
+    BW::App::alert("Callback invooked, field value changed")
+    values = @form.render
+    values[:bridge] = 'After callback'
+    @form.values = values
   end
 end
 class AppDelegate
@@ -13,8 +17,8 @@ class AppDelegate
       sections: [{
         title: "Register",
         rows: [{
-          title: "XXX",
-          key: :xxx,
+          title: "Bridge",
+          key: :bridge,
           type: :controller_bridge,
           controller_callback_method: 'my_callback',
           #value: 'abc',
