@@ -14,7 +14,7 @@ module Formotion
       VALUE_COLOR="#385387".to_color
 
       # 70% gray colour - see UITextfield.placeHolder
-      PLACEHOLDER_COLOR=UIColor.grayColor
+      PLACEHOLDER_COLOR=UIColor.colorWithWhite(0.0,alpha:0.25)
 
       def build_cell(cell)
         cell.accessoryType = cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator
